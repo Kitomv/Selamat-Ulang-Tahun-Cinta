@@ -27,34 +27,45 @@
             <img src="img/lantern.png" class="lantern-main">
         </div>
         <div class="intro-text">
-            <h2 class="gold-text">Assalamu'alaikum Sayang.✨</h2>
+            <h2 class="gold-text">Assalamu'alaikum Sayang... ✨</h2>
             <div class="tap-hint">Ketuk Lenteranya</div>
         </div>
     </div>
 
     <div class="container">
+        
         <div class="card" id="cardUcapan">
             <div class="ornament">☪️</div>
-            <h1 class="title">Milad Mubarak, <br><span>Aisyahwa</span></h1>
+            <h1 class="title">Milad Mubarak, <br><span>Sayangku</span></h1>
             <div class="line"></div>
             <div class="message-box">
                 <p id="typing-text"></p>
             </div>
-            <button id="btnLanjut" class="btn-gold" style="display:none;" onclick="keGacha()">Cek THR Milad 🧧</button>
+            <button id="btnLanjut" class="btn-gold" style="display:none;" onclick="keMemori()">Klik untuk Kejutan... ✨</button>
+        </div>
+
+        <div class="card" id="cardMemori" style="display:none;">
+            <div class="ornament">✨</div>
+            <h2 class="title">Momen Berkah<span> Kita</span></h2>
+            <div class="line"></div>
+            <div class="photo-frame">
+                <img src="img/foto-kenangan.jpg" alt="Memori">
+            </div>
+            <p class="sub-text">"Terima kasih sudah membersamai langkahku hingga saat ini. Di setiap sujudku, namamu tak pernah absen kusebut. ❤️"</p>
+            <button class="btn-gold" onclick="keGacha()">Ambil THR Milad 🧧</button>
         </div>
 
         <div class="card" id="cardGacha" style="display:none;">
             <div class="ornament">🕌</div>
-            <h2 class="title">Bismillah.</h2>
+            <h2 class="title">Bismillah...</h2>
             <div class="gacha-frame">
-                <div id="displayGacha">✨</div>
+                <div id="displayGacha">🎁</div>
             </div>
             <p id="reaksi" class="sub-text">Semoga dapet yang berkah!</p>
             <button id="btnSpin" class="btn-gold" onclick="putarTHR()">Putar Sekarang!</button>
-            <button id="btnSelesai" class="btn-gold btn-glow" onclick="tampilPesanAkhir()" style="display:none;">Ambil Hadiah✨</button>
-            
+            <button id="btnSelesai" class="btn-gold btn-glow" onclick="tampilPesanAkhir()" style="display:none;">Cek Sesuatu... ✨</button>
             <div id="pesanPenutup" style="display:none;">
-                "Semoga berkahnya selalu menyertai kita, ya sayang. Aamiin.💖"
+                "Hadiahnya udah di tasmu sayang, coba dicek pelan-pelan ya... Barokallahu fii umrik! ❤️"
             </div>
         </div>
     </div>
