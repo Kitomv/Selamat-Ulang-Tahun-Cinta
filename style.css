@@ -7,62 +7,186 @@ body {
     background: #000b10; overflow: hidden; display: flex; justify-content: center; align-items: center; color: white;
 }
 
-/* BACKGROUND */
-.bg-stars {
-    position: fixed; inset: 0; z-index: -3;
-    background: linear-gradient(to bottom, rgba(0, 18, 25, 0.75), rgba(0, 10, 15, 0.95)), url('ramadan-bg.jpg');
-    background-size: cover; background-position: center;
-}
+/* BACKGROUNDS */
+.bg-stars { position: fixed; inset: 0; z-index: -3; background: linear-gradient(to bottom, rgba(0, 18, 25, 0.75), rgba(0, 10, 15, 0.95)), url('ramadan-bg.jpg'); background-size: cover; background-position: center; }
 .pattern-bg { position: fixed; inset: 0; z-index: -2; background-image: url('https://www.transparenttextures.com/patterns/arabesque.png'); opacity: 0.15; }
-
-/* OVERLAY */
-#overlay {
-    position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; text-align: center;
-    background: linear-gradient(rgba(0,15,20,0.95), rgba(0,5,10,0.98)), url('ramadan-bg.jpg');
-    background-size: cover; background-position: center; transition: 1.5s cubic-bezier(0.65, 0, 0.35, 1);
-}
-.overlay-pattern { position: absolute; inset: 0; background-image: url('https://www.transparenttextures.com/patterns/arabesque.png'); opacity: 0.1; z-index: -1; }
-
-/* LANTERN STYLES */
-.lantern-container { display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 25px; }
-.lantern-main { width: 120px; filter: drop-shadow(0 0 20px gold); animation: pulse 2s infinite ease-in-out; cursor: pointer; }
 .hanging-decor { position: absolute; top: 0; width: 100%; display: flex; justify-content: space-around; z-index: 10; pointer-events: none; }
 .lantern { width: 45px; transform-origin: top center; animation: swing 3s infinite ease-in-out alternate; filter: drop-shadow(0 0 8px gold); }
-.l-2 { width: 60px; top: -10px; }
 
-/* CONTAINER & CARDS (CENTER) */
+/* OVERLAY & CONTAINER */
+/* Overlay Utama dengan Background Gambar */
+#overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Background Ramadan */
+    background: linear-gradient(rgba(0,15,20,0.95), rgba(0,5,10,0.98)), url('ramadan-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Pattern Arabesque yang bikin mewah */
+.overlay-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+    opacity: 0.12;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Ukuran Lentera yang sudah kita kecilkan tadi */
+.lantern-main {
+    width: 85px; 
+    filter: drop-shadow(0 0 15px gold);
+    cursor: pointer;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Efek Partikel Cahaya Global */
+.floating-light {
+    position: fixed; /* Ubah ke fixed supaya ikut scroll/stay di layar */
+    width: 5px;
+    height: 5px;
+    background: radial-gradient(circle, #ffd700, transparent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: floatUp infinite linear;
+    pointer-events: none; /* WAJIB: Biar gak ngeblokir klik tombol */
+    z-index: 1; /* Di atas background, tapi di bawah card (card z-index: 20) */
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(110vh) translateX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    to {
+        transform: translateY(-10vh) translateX(20px);
+        opacity: 0;
+    }
+}
+
 .container { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; min-height: 100vh; z-index: 5; padding: 20px; }
+/* Update Ukuran Lentera Utama di Overlay */
+.lantern-main {
+    width: 85px; /* Kita kecilkan dari 120px ke 85px */
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7)); /* Glow diperhalus */
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Pastikan container-nya juga menyesuaikan */
+.lantern-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px; /* Jarak ke teks sedikit dirapatkan */
+    padding-top: 10px;
+}
+
+/* Styling Baru untuk Lentera */
+.lantern {
+    width: 45px;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+    /* Kita pakai dua animasi: melayang dan pendaran cahaya */
+    animation: floating 4s infinite ease-in-out alternate, 
+               breathing 3s infinite ease-in-out alternate;
+}
+
+/* 1. Animasi Melayang (Naik Turun Halus) */
+@keyframes floating {
+    from {
+        transform: translateY(0) rotate(-2deg);
+    }
+    to {
+        transform: translateY(-15px) rotate(2deg); /* Melayang naik 15px */
+    }
+}
+
+/* 2. Animasi Pendaran Cahaya (Bernapas) */
+@keyframes breathing {
+    from {
+        filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.9)); /* Cahaya menguat */
+    }
+}
+
+.l-1 { animation-delay: 0s; }
+.l-2 { animation-delay: 1.2s; } /* Jeda 1.2 detik */
+.l-3 { animation-delay: 0.5s; } /* Jeda 0.5 detik */
+
+/* CARD SYSTEM */
 .card {
-    background: rgba(0, 35, 45, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-    border: 1.5px solid #d4af37; border-radius: 30px 30px 10px 10px; padding: 35px 25px;
-    width: 100%; max-width: 360px; text-align: center; margin: auto;
-    display: none; flex-direction: column; align-items: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(0, 35, 45, 0.9);
+    backdrop-filter: blur(15px);
+    border: 1.5px solid #d4af37;
+    border-radius: 30px 30px 10px 10px;
+    padding: 25px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    z-index: 20;
+    
+    /* Tambahan agar kartu tidak loncat-loncat */
+    min-height: 420px; /* Sesuaikan tinggi ini agar semua konten muat */
+    justify-content: flex-start; /* Konten mulai dari atas */
+}
+.card.active { display: flex; animation: slideIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+.card.exit { animation: slideOut 0.5s ease forwards; }
+
+.message-box {
+    width: 100%;
+    min-height: 160px; /* INI KUNCINYA: Kasih ruang yang cukup buat teks panjang */
+    display: flex;
+    align-items: center; /* Teks tetap di tengah secara vertikal di dalam box-nya */
+    justify-content: center;
+    margin-bottom: 15px;
 }
 
-/* PHOTO FRAME */
-.photo-frame {
-    width: 100%; height: 220px; margin: 15px 0; border: 5px solid #fff; border-bottom: 30px solid #fff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3); transform: rotate(-2deg); transition: 0.3s;
+#typing-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #e0f2f1;
+    margin: 0;
+    /* Biar teks tidak overflow kalau kepanjangan */
+    overflow: hidden; 
 }
+
+/* SLIDESHOW STYLES */
+.slideshow-container { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin: 15px 0; }
+.photo-frame { width: 180px; height: 220px; border: 5px solid #fff; border-bottom: 30px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.3); transform: rotate(-2deg); overflow: hidden; transition: 0.3s; }
 .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+.nav-btn { background: rgba(212, 175, 55, 0.8); color: #001219; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; font-weight: bold; z-index: 10; }
+.fade-anim { animation: fadeEffect 0.5s ease-in-out; }
 
-/* TYPOGRAPHY & BUTTONS */
-.title { font-family: 'Amiri', serif; font-size: 30px; color: #d4af37; margin: 0; }
-.title span { color: #fff; font-size: 20px; }
-.gold-text { font-family: 'Amiri', serif; font-size: 26px; color: #ffd700; margin-top: 15px; }
-.line { width: 60px; height: 2px; background: #d4af37; margin: 15px auto; }
-.btn-gold { width: 100%; padding: 15px; border: none; border-radius: 50px; background: linear-gradient(45deg, #d4af37, #f4d03f); color: #001219; font-weight: bold; cursor: pointer; margin-top: 15px; }
-
-.gacha-frame { width: 140px; height: 140px; margin: 20px auto; background: rgba(0,0,0,0.5); border: 2px double #d4af37; border-radius: 20px; display: flex; justify-content: center; align-items: center; overflow: hidden; }
-#pesanPenutup { margin-top: 20px; padding: 15px; border: 1px dashed #d4af37; border-radius: 15px; background: rgba(255, 215, 0, 0.05); font-style: italic; color: #ffd700; animation: fadeIn 1s; }
+/* BUTTONS & TYPO */
+.btn-gold { width: 100%; padding: 15px; border: none; border-radius: 50px; background: linear-gradient(45deg, #d4af37, #f4d03f); color: #001219; font-weight: bold; cursor: pointer; margin-top: 15px; position: relative; z-index: 50; }
+.title { font-family: 'Amiri', serif; font-size: 28px; color: #d4af37; margin: 0; }
+.line { width: 60px; height: 2px; background: #d4af37; margin: 10px auto; }
+.gacha-frame { width: 130px; height: 130px; margin: 20px auto; background: rgba(0,0,0,0.5); border: 2px double #d4af37; border-radius: 20px; display: flex; justify-content: center; align-items: center; overflow: hidden; }
 
 /* ANIMATIONS */
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+@keyframes slideIn { from { opacity: 0; transform: translateY(40px) scale(0.95); filter: blur(5px); } to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+@keyframes slideOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.9); filter: blur(5px); } }
+@keyframes fadeEffect { from { opacity: 0.5; } to { opacity: 1; } }
 @keyframes swing { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
-@keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.floating-light { position: absolute; width: 3px; height: 3px; background: #ffd700; border-radius: 50%; opacity: 0.3; animation: floatUp infinite linear; pointer-events: none; }
-@keyframes floatUp { from { transform: translateY(100vh); opacity: 0; } 50% { opacity: 0.5; } to { transform: translateY(-10vh); opacity: 0; } }
