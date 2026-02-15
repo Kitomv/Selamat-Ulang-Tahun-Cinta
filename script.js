@@ -79,14 +79,28 @@ function typeWriter() {
 }
 
 function gantiFoto(n) {
+    const imgEl = document.getElementById('imgMemori');
+    const txtEl = document.getElementById('txtMemori');
+    
+    // 1. Update Index
     idxFoto += n;
     if (idxFoto >= memoriData.length) idxFoto = 0;
     if (idxFoto < 0) idxFoto = memoriData.length - 1;
-    const imgEl = document.getElementById('imgMemori');
-    const txtEl = document.getElementById('txtMemori');
-    imgEl.parentElement.classList.remove('fade-anim');
-    void imgEl.parentElement.offsetWidth; // Trigger reflow
-    imgEl.parentElement.classList.add('fade-anim');
+
+    // 2. Hapus class animasi lama
+    imgEl.classList.remove('slide-in-right', 'slide-in-left');
+    
+    // 3. Trigger Reflow (biar browser sadar ada perubahan class)
+    void imgEl.offsetWidth; 
+
+    // 4. Tambahkan class sesuai arah klik
+    if (n > 0) {
+        imgEl.classList.add('slide-in-right');
+    } else if (n < 0) {
+        imgEl.classList.add('slide-in-left');
+    }
+
+    // 5. Ganti sumber gambar dan teks
     imgEl.src = `img/${memoriData[idxFoto].img}`;
     txtEl.innerHTML = `"${memoriData[idxFoto].text}"`;
 }
