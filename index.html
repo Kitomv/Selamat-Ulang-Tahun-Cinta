@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Milad Mubarak Sayang ✨</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-stars"></div>
+    <div class="pattern-bg"></div>
+    
+    <div class="hanging-decor">
+        <img src="img/lantern.png" class="lantern l-1">
+        <img src="img/lantern.png" class="lantern l-2">
+        <img src="img/lantern.png" class="lantern l-3">
+    </div>
+
+    <audio id="bgm" loop><source src="Music/ramadan.mp3" type="audio/mpeg"></audio>
+    <audio id="sfxOpen"><source src="Music/magic.mp3" type="audio/mpeg"></audio>
+    <audio id="sfxWin"><source src="Music/win.mp3" type="audio/mpeg"></audio>
+
+    <div id="overlay">
+        <div class="overlay-pattern"></div>
+        <div class="lantern-container" onclick="bukaBerkah()">
+            <img src="img/lantern.png" class="lantern-main">
+        </div>
+        <div class="intro-text">
+            <h2 class="gold-text">Assalamu'alaikum Sayang... ✨</h2>
+            <div class="tap-hint">Ketuk Lenteranya</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card" id="cardUcapan">
+            <div class="ornament">☪️</div>
+            <h1 class="title">Milad Mubarak, <br><span>Sayangku</span></h1>
+            <div class="line"></div>
+            <div class="message-box">
+                <p id="typing-text"></p>
+            </div>
+            <button id="btnLanjut" class="btn-gold" style="display:none;" onclick="keGacha()">Cek THR Milad 🧧</button>
+        </div>
+
+        <div class="card" id="cardGacha" style="display:none;">
+            <div class="ornament">🕌</div>
+            <h2 class="title">Bismillah...</h2>
+            <div class="gacha-frame">
+                <div id="displayGacha">✨</div>
+            </div>
+            <p id="reaksi" class="sub-text">Semoga dapet yang berkah!</p>
+            <button id="btnSpin" class="btn-gold" onclick="putarTHR()">Putar Sekarang!</button>
+            <button id="btnSelesai" class="btn-gold btn-glow" onclick="tampilPesanAkhir()" style="display:none;">Ambil Hadiah✨</button>
+            
+            <div id="pesanPenutup" style="display:none;">
+                "Hadiahnya udah di tasmu sayang, coba dicek pelan-pelan ya... Barokallahu fii umrik! ❤️"
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
