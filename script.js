@@ -125,7 +125,7 @@ function putarTHR() {
 
     // 2. Ubah teks di tengah jalan biar gak bosen (setelah 5 detik)
     setTimeout(() => {
-        reaksi.innerText = "Hampir dapet nih! Kira-kira apa ya...🤔";
+        reaksi.innerText = "Hampir dapet nih! Kira-kira apa ya🤔";
     }, 5000);
 
     // 3. STOP Gacha setelah 10 Detik (10000 ms)
